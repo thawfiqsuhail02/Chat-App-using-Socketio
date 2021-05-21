@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Hello Bro</title>
+	  <script src="/socket.io/socket.io.js"></script>
+	  <script>
+		var socket=io();
+		socket.on('smessage',(data)=>{
+			document.write(data);
+		})
+		socket.emit('cmessage',"This is client side message");
+		socket.on('stimeout',data=>{document.write(data);})
+	  </script>
+   </head>
+   <body>This is Thawfiq's Socket</body>
+</html>

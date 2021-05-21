@@ -1,0 +1,57 @@
+<html>
+<head>
+</head>
+<script src = "/socket.io/socket.io.js"></script>
+<link type="text/css" href="index2.2.css" rel="stylesheet" />
+<style>
+	h1{
+	background-color: #dafcfc;
+	color :blue;
+	}
+	button{
+	width:100%;
+	background:none;
+	border:8px solid #4caf50;
+	color:	orange;
+	padding: 5px;
+	font-size:18px;
+	cursor:pointer;
+	margin:12px 0px;
+	}
+	h2
+	{
+		background-color: yellow;
+		color :blue;
+	};	
+</style>
+</head>
+<script>
+      var socket = io();
+	  var msgarr=new Array();
+	  //eventhandling sending message via js
+	  socket.on('message',(data) =>{
+		data= data;
+		msgarr.push(data);
+		console.log(msgarr);
+		document.getElementById('tarea').innerHTML = msgarr;
+	  });
+	  function sendData()
+	  {
+		var data1=document.getElementById('tname').value;
+		var data2=document.getElementById('tdata').value;
+		var data=data1+ ':' +data2;
+		socket.send(data);
+	  }
+   </script>
+<body bgcolor="#dafcfc">
+<h1>Chat application</h1>
+	<form fname='f'>
+		<div>
+		<textarea id="tarea" rows="20" cols="20"></textarea></div><br>
+		<h2>user's name:</h2><input type="text" id="tname"><br>
+		<h2>message:</h2><input type="text" id="tdata">
+		<div>
+		<input type="button" value="send" onclick="sendData()"></button>
+		</div>
+	</form>
+</body></html>
